@@ -47,6 +47,12 @@
 //   class = 'highlight'
 - (NSDictionary *) attributes;
 
+// Returns an array of children of this tag
+- (NSArray *) children;
+
+// Returns the first child of this element
+- (TFHppleElement*)firstChild;
+
 // Provides easy access to the content of a specific attribute, 
 // such as 'href' or 'class'.
 - (NSString *) objectForKey:(NSString *) theKey;

@@ -69,12 +69,18 @@ NSString * const TFHppleNodeChildrenKey		     = @"nodeChildArray";
 }
 
 - (TFHppleElement*)firstChild {
-  return [[node objectForKey:TFHppleNodeChildrenKey] objectAtIndex:0];
+  return [[[TFHppleElement alloc] initWithNode:[[node objectForKey:TFHppleNodeChildrenKey] objectAtIndex:0]] autorelease];
 }
 
 - (NSArray *) children
 {
-  return [node objectForKey:TFHppleNodeChildrenKey];
+	NSArray *children = [node objectForKey:TFHppleNodeChildrenKey];
+	NSMutableArray *hpple = [NSMutableArray arrayWithCapacity:[children count]];
+	for(NSDictionary *child in children) {
+		[hpple addObject:[[TFHppleElement alloc] initWithNode:child]];
+	}
+	
+	return hpple;
 }
 
 - (NSDictionary *) attributes
